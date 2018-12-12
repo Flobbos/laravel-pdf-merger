@@ -1,0 +1,26 @@
+{
+    "name": "flobbos/laravel-pdf-merger",
+    "description": "Merging PDFs in laravel made easy",
+    "keywords": ["laravel", "pdf", "merge"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Alexej Krzewitzki",
+            "email": "alexej@helloo.it",
+            "homepage": "http://helloo.it"
+        }
+    ],
+    "require": {
+        "php": ">=7.0.0",
+        "illuminate/support": ">=5.3.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Flobbos\\PDFMerger\\": "src/PDFMerger/"
+        },
+        "classmap": [
+        ]
+    },
+
+    "minimum-stability": "dev"
+}
