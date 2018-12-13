@@ -3,7 +3,7 @@
 namespace Flobbos\PDFMerger;
 
 use Flobbos\PDFMerger\FPDF\FPDF;
-use FPDI;
+use Flobbos\PDFMerger\FPDI\FPDI;
 use Exception;
 
 /**
@@ -12,9 +12,8 @@ use Exception;
  * Uses FPDI 1.3.1 from Setasign
  * Uses FPDF 1.6 by Olivier Plathey with FPDF_TPL extension 1.1.3 by Setasign
  *
- * Both of these packages are free and open source software, bundled with this class for ease of use.
- * They are not modified in any way. PDFMerger has all the limitations of the FPDI package - essentially, it cannot import dynamic content
- * such as form fields, links or page annotations (anything not a part of the page content stream).
+ * Both classes are free open source packages that have been slightly modified
+ * to work with this package and have been bundled for ease of use.
  *
  */
 class PDFMerger{
@@ -23,9 +22,7 @@ class PDFMerger{
     /**
      * Merge PDFs.
      */
-    public function __construct(){
-        
-    }
+    
     /**
      * Add a PDF for inclusion in the merge with a valid file path. Pages should be formatted: 1,3,6, 12-16.
      * @param $filepath
@@ -71,6 +68,7 @@ class PDFMerger{
                     $orientation = ($size['h'] > $size['w']) ? 'P' : 'L';
                     $fpdi->AddPage($orientation, array($size['w'], $size['h']));
                     $fpdi->useTemplate($template);
+                    
                 }
             } else {
                 foreach ($filepages as $page) {
@@ -92,7 +90,7 @@ class PDFMerger{
             if ($fpdi->Output($outputpath, $mode) == '') {
                 return true;
             } else {
-                throw new exception("Error outputting PDF to '$outputmode'.");
+                throw new Exception("Error outputting PDF to '$outputmode'.");
                 return false;
             }
         }

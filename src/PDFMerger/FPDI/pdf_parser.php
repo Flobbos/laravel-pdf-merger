@@ -1,4 +1,7 @@
 <?php
+
+namespace Flobbos\PDFMerger\FPDI;
+
 /**
  * This file is part of FPDI
  *

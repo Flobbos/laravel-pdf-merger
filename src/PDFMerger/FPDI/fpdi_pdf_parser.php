@@ -1,4 +1,8 @@
 <?php
+namespace Flobbos\PDFMerger\FPDI;
+
+use Flobbos\PDFMerger\FPDI\pdf_parser;
+
 /**
  * This file is part of FPDI
  *
@@ -7,10 +11,6 @@
  * @license   http://opensource.org/licenses/mit-license The MIT License
  * @version   1.6.1
  */
-
-if (!class_exists('pdf_parser')) {
-    require_once('pdf_parser.php');
-}
 
 /**
  * Class fpdi_pdf_parser
@@ -201,6 +201,9 @@ class fpdi_pdf_parser extends pdf_parser
      */
     protected function _getPageBox($page, $boxIndex, $k)
     {
+        if($k == 0){
+            $k = 1;
+        }
         $page = $this->resolveObject($page);
         $box = null;
         if (isset($page[1][1][$boxIndex])) {

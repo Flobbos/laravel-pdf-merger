@@ -1,7 +1,7 @@
 <?php
 namespace Flobbos\PDFMerger\FPDI;
 
-use FPDF_TPL;
+use Flobbos\PDFMerger\FPDI\FPDF_TPL;
 
 /**
  * This file is part of FPDI
@@ -22,7 +22,7 @@ class FPDI extends FPDF_TPL
      *
      * @string
      */
-    const VERSION = '1.6.1';
+    protected $PDFVersion = '1.6.1';
 
     /**
      * Actual filename
@@ -79,6 +79,8 @@ class FPDI extends FPDF_TPL
      * @var array
      */
     protected $_importedPages = array();
+    
+    //protected $k;
     
     /**
      * Set a source-file.

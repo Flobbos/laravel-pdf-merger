@@ -2,6 +2,8 @@
 
 namespace Flobbos\PDFMerger\FPDI;
 
+use LogicException;
+use Flobbos\PDFMerger\FPDI\fpdi_bridge;
 
 /**
  * This file is part of FPDI
@@ -15,7 +17,7 @@ namespace Flobbos\PDFMerger\FPDI;
 /**
  * Class FPDF_TPL
  */
-class FPDF_TPL{
+class FPDF_TPL extends fpdi_bridge{
     /**
      * Array of template data
      *
@@ -57,6 +59,8 @@ class FPDF_TPL{
      * @var array
      */
     public $lastUsedTemplateData = array();
+    
+    public $k, $h, $w;
 
     /**
      * Start a template.
@@ -354,6 +358,7 @@ class FPDF_TPL{
      */
     public function AddPage($orientation = '', $format = '', $rotationOrKeepmargins = false, $tocpage = false)
     {
+        
         if (is_subclass_of($this, 'TCPDF')) {
             $args = func_get_args();
             return call_user_func_array(array($this, 'TCPDF::AddPage'), $args);
@@ -362,7 +367,7 @@ class FPDF_TPL{
         if ($this->_inTpl) {
             throw new LogicException('Adding pages in templates is not possible!');
         }
-
+        
         parent::AddPage($orientation, $format, $rotationOrKeepmargins);
     }
 
@@ -429,7 +434,7 @@ class FPDF_TPL{
             throw new LogicException('Setting links in templates is not possible!');
         }
 
-        parent::SetLink($link, $y, $page);
+        $this->SetLink($link, $y, $page);
     }
 
     /**
